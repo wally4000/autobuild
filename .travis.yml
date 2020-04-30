@@ -41,4 +41,5 @@ jobs:
           # 32-bit release
           - <<: *deploy
             env: TARGET=i686-unknown-linux-gnu
-            #yeash
+            #yeashr
+            
