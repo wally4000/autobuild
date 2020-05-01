@@ -6,29 +6,10 @@ branches:
   only:
     - master
 
-# Install tools for running tests
-install:
-  - cargo install cross
 
-# Setup jobs per platform
-jobs:
-  include:
-    # 64-bit tests
-    - &test
-      stage: test
-      script: cross test --target $TARGET
-      env: TARGET=x86_64-unknown-linux-gnu
-    # 32-bit tests
-    - <<: *test
-      env: TARGET=i686-unknown-linux-gnu
-    # 64-bit release
-    - &deploy
-      stage: deploy
-      env: TARGET=x86_64-unknown-linux-gnu
-      script: skip
+
       before_deploy:
-        - cross build --release --target $TARGET
-        - cp target/$TARGET/release/travis-docker-demo .
+        - touch travis-docker-demo
         - tar czf travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz travis-docker-demo
         - TRAVIS_TAG=build-$TRAVIS_BUILD_NUMBER
       deploy:
@@ -36,6 +17,3 @@ jobs:
         file: travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz
         provider: releases
         skip_cleanup: true
-    # 32-bit release
-    - <<: *deploy
-      env: TARGET=i686-unknown-linux-gnu
