@@ -1,6 +1,4 @@
-language: rust
-
-services: docker
+language: c
 
 branches:
   only:
