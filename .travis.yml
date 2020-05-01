@@ -5,9 +5,6 @@ services: docker
 branches:
   only:
     - master
-
-
-
       before_deploy:
         - touch travis-docker-demo
         - tar czf travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz travis-docker-demo
