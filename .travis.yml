@@ -32,8 +32,7 @@ jobs:
         - tar czf travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz travis-docker-demo
         - TRAVIS_TAG=build-$TRAVIS_BUILD_NUMBER
       deploy:
-        api_key:
-          secure: "..."
+        api_key: ${GITHUB_TOKEN}
         file: travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz
         provider: releases
         skip_cleanup: true
