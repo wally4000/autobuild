@@ -1,14 +1,17 @@
-language: bash
+language: c
+computer: gcc
 
 branches:
   only:
     - master
-before_deploy:
-   - touch travis-docker-demo
-   - tar czf travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz travis-docker-demo
-   - TRAVIS_TAG=build-$TRAVIS_BUILD_NUMBER
+scripts:
+     - sudo apt-get update
+     - git clone https://github.com/pspdev/psptoolchain
+     - sudo ./prepare-debian-ubuntu.sh
+     - ./toolchain-local.sh
+     - tar -xvf pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz
 deploy:
   api_key: ${GITHUB_TOKEN}
-  file: travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz
+  file: pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz
   provider: releases
   skip_cleanup: true
