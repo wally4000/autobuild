@@ -3,11 +3,10 @@ age: c
 branches:
   only:
     - master
-
- before_deploy:
-        - touch travis-docker-demo
-        - tar czf travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz travis-docker-demo
-        - TRAVIS_TAG=build-$TRAVIS_BUILD_NUMBER
+before_deploy:
+   - touch travis-docker-demo
+   - tar czf travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz travis-docker-demo
+   - TRAVIS_TAG=build-$TRAVIS_BUILD_NUMBER
 deploy:
   api_key: ${GITHUB_TOKEN}
   file: travis-docker-demo-$TARGET-$TRAVIS_BUILD_NUMBER.tar.gz
