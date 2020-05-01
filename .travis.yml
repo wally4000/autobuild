@@ -9,7 +9,7 @@ scripts:
      - git clone https://github.com/pspdev/psptoolchain
      - sudo ./prepare-debian-ubuntu.sh
      - ./toolchain-local.sh
-     - tar -xvf pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz pspdev
+     - tar -cvjf pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz pspdev
 deploy:
   api_key: ${GITHUB_TOKEN}
   file: pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz
