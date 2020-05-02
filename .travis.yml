@@ -1,11 +1,18 @@
 language: c
-computer: gcc
-
+#computer: gcc
+matrix:
+  include:
+  -  os: linux
+    dist: bionic
+    sudo: true
+  - os: osx
+  osx_image: xcode8.3
+  
 branches:
   only:
     - master
 scripts:
-     - TARGET=$(uname -a | cut -d " " -f1)
+     - TARGET=$(uname -a | cut -d " " -f1) # Sets the OS name (Linux or Darwin)
      - sudo apt-get update
      - git clone https://github.com/pspdev/psptoolchain
      - sudo ./prepare-debian-ubuntu.sh
