@@ -7,17 +7,16 @@ matrix:
     sudo: true
   - os: osx
   osx_image: xcode8.3
-  
+
 branches:
   only:
     - master
 scripts:
      - TARGET=$(uname -a | cut -d " " -f1) # Sets the OS name (Linux or Darwin)
      - sudo apt-get update
-     - git clone https://github.com/pspdev/psptoolchain
-     - sudo ./prepare-debian-ubuntu.sh
-     - ./toolchain-local.sh
-     - tar -cvjf pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz pspdev
+     - git clone https://github.com/wally4000/clang-psp
+     - cd clang-psp
+     - ./toolchain.sh
 deploy:
   api_key: ${GITHUB_TOKEN}
   file: pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz
