@@ -13,4 +13,4 @@ scripts:
   - "git clone https://github.com/wally4000/clang-psp"
   - "cd clang-psp"
   - sudo ./toolchain.sh
-  - tar -cvjf pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz pspdev
+  - tar -cvjf pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz /usr/local/pspdev
