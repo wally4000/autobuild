@@ -12,4 +12,5 @@ scripts:
   - "sudo apt-get update"
   - "git clone https://github.com/wally4000/clang-psp"
   - "cd clang-psp"
-  - ./toolchain.sh
+  - sudo ./toolchain.sh
+  - tar -cvjf pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz pspdev
