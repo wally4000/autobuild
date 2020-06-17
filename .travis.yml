@@ -1,24 +1,15 @@
-language: c
-#computer: gcc
-matrix:
-  include:
-  -  os: linux
-    dist: bionic
-    sudo: true
-  - os: osx
-  osx_image: xcode8.3
-
-branches:
-  only:
+branches: 
+  only: 
     - master
-scripts:
-     - TARGET=$(uname -a | cut -d " " -f1) # Sets the OS name (Linux or Darwin)
-     - sudo apt-get update
-     - git clone https://github.com/wally4000/clang-psp
-     - cd clang-psp
-     - ./toolchain.sh
-deploy:
-  api_key: ${GITHUB_TOKEN}
+deploy: 
+  api_key: "${GITHUB_TOKEN}"
   file: pspdev-$TARGET-TRAVIS_BUILD_NUMBER.tar.gz
   provider: releases
   skip_cleanup: true
+language: c
+scripts: 
+  - "TARGET=$(uname -a | cut -d \" \" -f1)"
+  - "sudo apt-get update"
+  - "git clone https://github.com/wally4000/clang-psp"
+  - "cd clang-psp"
+  - ./toolchain.sh
